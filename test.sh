@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-# This is a very simple example
-set e
-echo Hello World
+### every exit != 0 fails the script
+set -e
+
+
