@@ -26,16 +26,21 @@ ADD ./src/centos/install/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 ### Install some common tools
-RUN . $INST_SCRIPTS/tools.sh
+RUN $INST_SCRIPTS/tools.sh
 
 ### Install xvnc-server & noVNC - HTML5 based VNC viewer
-RUN . $INST_SCRIPTS/tigervnc.sh
-RUN . $INST_SCRIPTS/no_vnc.sh
+RUN $INST_SCRIPTS/tigervnc.sh
+RUN $INST_SCRIPTS/no_vnc.sh
 
 ### Install xfce UI
-RUN . $INST_SCRIPTS/xfce_ui.sh
+RUN $INST_SCRIPTS/xfce_ui.sh
 ADD ./src/common/xfce/ $HOME/
 
 ### configure startup
 ADD ./src/common/scripts $HOME/scripts
-RUN . $INST_SCRIPTS/set_user_permission.sh
+RUN $INST_SCRIPTS/set_user_permission.sh
+
+USER 1984
+
+ENTRYPOINT ["scripts/vnc_startup.sh"]
+CMD ["--tail-log"]
