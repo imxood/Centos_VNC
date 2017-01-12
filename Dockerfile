@@ -25,14 +25,14 @@ ADD ./src/common/install/ $INST_SCRIPTS/
 ADD ./src/centos/install/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
-### 安装基本工具
+### install common tools
 RUN $INST_SCRIPTS/tools.sh
 
-### 安装 xvnc-server & noVNC - HTML5 based VNC viewer
+### install xvnc-server & noVNC - HTML5 based VNC viewer
 RUN $INST_SCRIPTS/tigervnc.sh
 RUN $INST_SCRIPTS/no_vnc.sh
 
-### 安装chrome浏览器
+### install chrome
 RUN . $INST_SCRIPTS/chrome.sh
 
 ### Install xfce UI
